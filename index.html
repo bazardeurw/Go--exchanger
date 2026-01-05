@@ -4,38 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Go Exchanger | Global Crypto Hub</title>
+    <title>Go Exchanger | Global Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0f1a;
+            --bg-dark: #050b18;
             --card-bg: #161b2c;
             --primary: #00d084;
-            --accent: #3b82f6;
+            --tab-inactive: #2d3748;
             --text-main: #ffffff;
-            --text-dim: #94a3b8;
+            --text-dim: #a0aec0;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: radial-gradient(circle at 50% 0%, #1e293b, #0b0f1a);
-            color: var(--text-main);
+        body, html {
             margin: 0;
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px 10px;
-        }
-
-        .app-container {
+            padding: 0;
             width: 100%;
-            max-width: 500px;
-            animation: fadeIn 0.8s ease-in-out;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
         }
 
-        header {
+        /* --- Effet Étoiles Animées --- */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #0f172a 0%, #050b18 100%);
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* --- Mise en page --- */
+        .app-container {
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 0 15px;
             text-align: center;
-            margin-bottom: 25px;
         }
 
         .logo-text {
@@ -44,34 +65,34 @@
             background: linear-gradient(135deg, #00d084 0%, #3b82f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin: 0;
-            letter-spacing: -1.5px;
+            margin-bottom: 5px;
+            letter-spacing: -2px;
         }
 
-        .status-bar {
+        .nav-tabs {
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-top: 10px;
+            margin-bottom: 20px;
         }
 
-        .badge {
-            font-size: 11px;
-            padding: 4px 10px;
-            border-radius: 20px;
-            background: rgba(0, 208, 132, 0.1);
-            color: var(--primary);
-            border: 1px solid rgba(0, 208, 132, 0.2);
-            text-transform: uppercase;
+        .tab {
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 13px;
             font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.1);
         }
+
+        .tab.active { background: var(--primary); color: #050b18; }
+        .tab.inactive { background: var(--tab-inactive); color: var(--text-dim); }
 
         .widget-wrapper {
             background: var(--card-bg);
-            border-radius: 28px;
-            padding: 6px;
-            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 30px;
+            padding: 8px;
+            box-shadow: 0 0 40px rgba(0, 208, 132, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             min-height: 650px;
         }
 
@@ -79,89 +100,110 @@
             width: 100%;
             height: 650px;
             border: none;
-            border-radius: 22px;
+            border-radius: 24px;
         }
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
-            margin-top: 25px;
-        }
-
-        .info-card {
+        /* --- Carrousel de Logos Défilants --- */
+        .payment-slider {
+            width: 100%;
+            overflow: hidden;
+            margin: 25px 0;
             background: rgba(255, 255, 255, 0.03);
-            padding: 12px 5px;
-            border-radius: 12px;
-            text-align: center;
-            font-size: 11px;
-            color: var(--text-dim);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 15px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .info-card strong {
-            display: block;
-            color: white;
-            margin-bottom: 4px;
-            font-size: 12px;
+        .slider-track {
+            display: flex;
+            width: calc(250px * 8);
+            animation: scroll 20s linear infinite;
+        }
+
+        .logo-item {
+            width: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        .logo-item img {
+            max-width: 80px;
+            max-height: 30px;
+            filter: grayscale(100%) brightness(200%);
+            opacity: 0.7;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-120px * 4)); }
         }
 
         footer {
-            margin-top: 30px;
-            text-align: center;
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-dim);
-            line-height: 1.6;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            padding-bottom: 40px;
         }
     </style>
 </head>
 <body>
 
+    <div class="stars-container" id="stars"></div>
+
     <div class="app-container">
         <header>
             <h1 class="logo-text">Go Exchanger</h1>
-            <div class="status-bar">
-                <span class="badge">Achat Fiat 💳</span>
-                <span class="badge">Swap Crypto 🔄</span>
-                <span class="badge">Global 🌍</span>
+            <div class="nav-tabs">
+                <div class="tab active">Achat Fiat 💳</div>
+                <div class="tab inactive">Swap Crypto 🔄</div>
             </div>
         </header>
 
         <main class="widget-wrapper">
             <iframe 
                 id='iframe-widget' 
-                src='https://changenow.io/embeds/exchange-widget/v2/widget.html?FAQ=true&amount=0.1&amountFiat=100&backgroundColor=FFFFFF&darkMode=false&from=btc&fromFiat=eur&horizontal=false&isFiat=true&lang=fr-FR&link_id=8c77efcb70ab45&locales=true&logo=true&primaryColor=00C26F&to=eth&toFiat=btc&toTheMoon=true'
-                title="Go Exchanger Universal Interface">
+                src='https://changenow.io/embeds/exchange-widget/v2/widget.html?FAQ=true&amount=100&amountFiat=100&backgroundColor=FFFFFF&darkMode=false&from=eur&fromFiat=eur&horizontal=false&isFiat=true&lang=fr-FR&link_id=8c77efcb70ab45&locales=true&logo=true&primaryColor=00C26F&to=btc&toFiat=btc&toTheMoon=true'
+                title="Go Exchanger Pro">
             </iframe>
         </main>
 
-        <div class="info-grid">
-            <div class="info-card">
-                <strong>+900 Assets</strong>
-                Disponibles
-            </div>
-            <div class="info-card">
-                <strong>No Limits</strong>
-                Échanges illimités
-            </div>
-            <div class="info-card">
-                <strong>Non-Custodial</strong>
-                Sécurité maximale
+        <div class="payment-slider">
+            <div class="slider-track">
+                <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"></div>
+                <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"></div>
+                <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay"></div>
+                <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg" alt="Google Pay"></div>
+                <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"></div>
+                <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"></div>
+                <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay"></div>
+                <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg" alt="Google Pay"></div>
             </div>
         </div>
 
         <footer>
-            <p>Support mondial 24/7 • Partenaire officiel ChangeNOW<br>
-            Visa, MasterCard, Apple Pay & Google Pay acceptés.<br>
-            <strong>&copy; 2026 Go Exchanger - International Crypto Gateway</strong></p>
+            <p>🔒 Sécurité de grade militaire • Support 24/7<br>
+            Plus de 900 actifs disponibles pour le monde entier.<br>
+            © 2026 Go Exchanger - International Crypto Gateway</p>
         </footer>
     </div>
 
+    <script>
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 80; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            const duration = 2 + Math.random() * 4;
+            star.style.left = `${x}%`;
+            star.style.top = `${y}%`;
+            star.style.width = `1.5px`;
+            star.style.height = `1.5px`;
+            star.style.setProperty('--duration', `${duration}s`);
+            starsContainer.appendChild(star);
+        }
+    </script>
     <script defer src='https://changenow.io/embeds/exchange-widget/v2/stepper-connector.js'></script>
 </body>
 </html>
