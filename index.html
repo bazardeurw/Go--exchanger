@@ -1,24 +1,130 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Go exchanger</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Go Exchanger | Instant Crypto Swap</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: sans-serif; background-color: #0f172a; color: white; text-align: center; padding: 20px; }
-        .container { background: #1e293b; max-width: 500px; margin: auto; padding: 20px; border-radius: 20px; border: 1px solid #334155; }
-        h1 { color: #00d084; margin-bottom: 5px; }
-        p { color: #94a3b8; font-size: 14px; margin-bottom: 20px; }
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #00d084;
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at top right, #1e293b, #0f172a);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            padding: 20px;
+            box-sizing: border-box;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -1px;
+            margin: 0;
+        }
+
+        .tagline {
+            color: var(--text-dim);
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .widget-wrapper {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 8px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            min-height: 580px; /* Évite le saut de contenu au chargement */
+            position: relative;
+        }
+
+        iframe {
+            width: 100%;
+            height: 580px;
+            border: none;
+            border-radius: 18px;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            opacity: 0.7;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Ajustements pour petits écrans */
+        @media (max-width: 400px) {
+            .app-container { padding: 10px; }
+            .widget-wrapper { border-radius: 16px; }
+            iframe { height: 600px; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Go exchanger</h1>
-        <p>Échangez plus de 900 cryptomonnaies instantanément.</p>
 
-        <iframe id='iframe-widget' src='https://changenow.io/embeds/exchange-widget/v2/widget.html?FAQ=true&amount=0.1&amountFiat=1500&backgroundColor=FFFFFF&darkMode=false&from=btc&fromFiat=eur&horizontal=false&isFiat=false&lang=fr-FR&link_id=8c77efcb70ab45&locales=true&logo=true&primaryColor=00C26F&to=eth&toFiat=eth&toTheMoon=true' style="height: 356px; width: 100%; border: none;"></iframe>
-        <script defer type='text/javascript' src='https://changenow.io/embeds/exchange-widget/v2/stepper-connector.js'></script>
+    <div class="app-container">
+        <header>
+            <h1 class="logo-text">Go Exchanger</h1>
+            <p class="tagline">Simple • Rapide • Sans inscription</p>
+        </header>
+
+        <main class="widget-wrapper">
+            <iframe 
+                id='iframe-widget' 
+                src='https://changenow.io/embeds/exchange-widget/v2/widget.html?FAQ=true&amount=0.1&backgroundColor=FFFFFF&darkMode=false&from=btc&horizontal=false&isFiat=false&lang=fr-FR&link_id=8c77efcb70ab45&locales=true&logo=true&primaryColor=00C26F&to=eth&toTheMoon=true'
+                title="Crypto Exchange Widget">
+            </iframe>
+        </main>
+
+        <footer>
+            <div class="trust-badges">
+                <span>🔒 Sécurisé SSL</span>
+                <span>⚡ Traitement Instantané</span>
+            </div>
+            <p style="margin-top: 15px;">&copy; 2026 Go Exchanger. Powered by ChangeNOW.</p>
+        </footer>
     </div>
+
+    <script defer src='https://changenow.io/embeds/exchange-widget/v2/stepper-connector.js'></script>
 </body>
 </html>
+
