@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go exchanger - Échange Crypto Rapide</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f8f9fa; margin: 0; padding: 20px; text-align: center; }
+        .box { background: white; max-width: 600px; margin: auto; padding: 30px; border-radius: 20px; shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { color: #00d084; }
+        .desc { text-align: left; color: #444; line-height: 1.6; margin-bottom: 25px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Go exchanger</h1>
+        <div class="desc">
+            <strong>Bienvenue sur Go exchanger – Votre plateforme d'échange crypto rapide et sécurisée.</strong><br><br>
+            Avec Go exchanger, convertissez vos actifs numériques en quelques secondes sans inscription. Notre service vous permet d'échanger plus de 900 cryptomonnaies (Bitcoin, Ethereum, NOW, etc.) au meilleur taux du marché, directement depuis votre propre portefeuille.<br><br>
+            • Anonymat préservé : Aucun compte ni vérification d'identité n'est requis.<br>
+            • Contrôle total : Nous ne conservons pas vos fonds. Vos cryptos sont envoyées directement sur votre adresse personnelle.<br>
+            • Simplicité : Choisissez vos devises, indiquez votre adresse, et envoyez vos fonds.
+        </div>
+
+        <iframe id='now-widget' style="width: 100%; height: 475px; border: none;" 
+        src="https://changenow.io/embeds/exchange/widget/v2/widget.html?link_id=8c77efcb70ab45&lang=fr-FR">
+        </iframe>
+    </div>
+</body>
+</html>
