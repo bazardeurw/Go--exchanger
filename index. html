@@ -1,3 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go exchanger</title>
+    <style>
+        body { font-family: sans-serif; background-color: #0f172a; color: white; text-align: center; padding: 20px; }
+        .container { background: #1e293b; max-width: 500px; margin: auto; padding: 20px; border-radius: 20px; border: 1px solid #334155; }
+        h1 { color: #00d084; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Go exchanger</h1>
+        <p>Échangez plus de 900 cryptomonnaies instantanément et en toute sécurité.</p>
 
-<iframe id='iframe-widget' src='https://changenow.io/embeds/exchange-widget/v2/widget.html?FAQ=true&amount=0.1&amountFiat=1500&backgroundColor=FFFFFF&darkMode=false&from=btc&fromFiat=eur&horizontal=false&isFiat&lang=en-US&link_id=8c77efcb70ab45&locales=true&logo=true&primaryColor=00C26F&to=eth&toFiat=eth&toTheMoon=true' style="height: 356px; width: 100%; border: none"></iframe>
-    <script defer type='text/javascript' src='https://changenow.io/embeds/exchange-widget/v2/stepper-connector.js'></script>
+        <iframe id='iframe-widget' src='https://changenow.io/embeds/exchange-widget/v2/widget.html?FAQ=true&amount=0.1&amountFiat=1500&backgroundColor=FFFFFF&darkMode=false&from=btc&fromFiat=eur&horizontal=false&isFiat=false&lang=fr-FR&link_id=8c77efcb70ab45&locales=true&logo=true&primaryColor=00C26F&to=eth&toFiat=eth&toTheMoon=true' style="height: 356px; width: 100%; border: none;"></iframe>
+        <script defer type='text/javascript' src='https://changenow.io/embeds/exchange-widget/v2/stepper-connector.js'></script>
+    </div>
+</body>
+</html>
