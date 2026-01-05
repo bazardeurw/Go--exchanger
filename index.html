@@ -1,29 +1,29 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Go Exchanger | Premium</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Go Exchanger | Global</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep: #050b18;
-            --accent: #00d084;
-            --text-gray: #94a3b8;
+            --bg-dark: #050b18;
+            --primary: #00d084;
+            --text-dim: #a0aec0;
         }
 
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
-            background: var(--bg-deep);
-            color: white;
+            min-height: 100%;
             font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: white;
             overflow-x: hidden;
         }
 
-        /* --- Fond Étoilé Subtil --- */
+        /* --- Fond Étoilé --- */
         #star-field {
             position: fixed;
             top: 0;
@@ -31,172 +31,144 @@
             width: 100%;
             height: 100%;
             z-index: -1;
+            background: radial-gradient(circle at center, #0f172a 0%, #050b18 100%);
         }
+
         .star {
             position: absolute;
             background: white;
             border-radius: 50%;
-            opacity: 0.2;
-            animation: blink var(--d) infinite ease-in-out;
-        }
-        @keyframes blink { 0%, 100% { opacity: 0.1; } 50% { opacity: 0.5; } }
-
-        /* --- Layout --- */
-        .wrapper {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            opacity: 0.3;
+            animation: twinkle var(--d) infinite ease-in-out;
         }
 
-        .hero-title {
-            font-size: 36px;
-            font-weight: 900;
-            letter-spacing: -1px;
-            background: linear-gradient(to bottom, #fff, #64748b);
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+        }
+
+        /* --- Structure --- */
+        .container {
+            max-width: 480px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .logo-title {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d084 0%, #3b82f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
-        /* --- Widget "Float" Design --- */
-        .widget-container {
-            width: 100%;
-            border-radius: 28px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            background: transparent; /* Suppression du cadre gris */
-            margin-bottom: 50px;
+        .widget-box {
+            background: #161b2c;
+            border-radius: 24px;
+            padding: 5px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
         }
 
         iframe {
             width: 100%;
             height: 620px;
             border: none;
-            display: block;
+            border-radius: 20px;
         }
 
-        /* --- Section Logos Défilants Épurée --- */
-        .trust-label {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-gray);
-            margin-bottom: 25px;
-        }
-
-        .logo-scroller {
-            width: 100vw;
-            position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
+        /* --- Logos Défilants (Pro & Individuels) --- */
+        .scroller {
+            width: 100%;
             overflow: hidden;
-            padding: 20px 0;
+            margin-top: 20px;
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
         }
 
-        .logo-track {
+        .scroller-inner {
             display: flex;
+            gap: 40px;
             width: max-content;
-            animation: slide 20s linear infinite;
-            align-items: center;
-            gap: 60px; /* Espace pour laisser respirer */
+            animation: scroll 15s linear infinite;
         }
 
-        .logo-item {
-            height: 35px; /* Taille pro discrète */
+        .logo-card {
             display: flex;
             align-items: center;
-            opacity: 0.8;
-            filter: grayscale(1) brightness(1.5);
-            transition: 0.3s;
+            justify-content: center;
+            width: 60px; /* Taille pro réduite */
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); /* Effet 3D léger */
+            transition: transform 0.3s;
         }
 
-        .logo-item:hover { opacity: 1; filter: grayscale(0); }
-
-        .logo-item img {
-            height: 100%;
-            width: auto;
+        .logo-card img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
         }
 
-        @keyframes slide {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
+        @keyframes scroll {
+            to { transform: translateX(calc(-50% - 20px)); }
         }
 
         footer {
-            margin-top: 60px;
-            text-align: center;
-            color: var(--text-gray);
+            margin-top: 40px;
             font-size: 11px;
-            line-height: 1.6;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            background: rgba(0, 208, 132, 0.1);
-            color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 15px;
+            color: var(--text-dim);
+            padding-bottom: 30px;
         }
     </style>
 </head>
 <body>
 
-<div id="star-field"></div>
+    <div id="star-field"></div>
 
-<div class="wrapper">
-    <div class="status-badge">● SYSTÈME OPÉRATIONNEL</div>
-    <h1 class="hero-title">Go Exchanger</h1>
+    <div class="container">
+        <h1 class="logo-title">Go Exchanger</h1>
 
-    <div class="widget-container">
-        <iframe 
-            src="https://changenow.io/embeds/exchange-widget/v2/widget.html?FAQ=true&amount=100&amountFiat=100&backgroundColor=FFFFFF&darkMode=false&from=eur&fromFiat=eur&horizontal=false&isFiat=true&lang=fr-FR&link_id=8c77efcb70ab45&locales=true&logo=true&primaryColor=00C26F&to=btc&toFiat=btc&toTheMoon=true">
-        </iframe>
-    </div>
-
-    <p class="trust-label">Partenaires Mondiaux</p>
-    
-    <div class="logo-scroller">
-        <div class="logo-track">
-            <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"></div>
-            <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"></div>
-            <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay"></div>
-            <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg" alt="Google Pay"></div>
-            <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Bitcoin"></div>
-            <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"></div>
-            <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"></div>
-            <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay"></div>
-            <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg" alt="Google Pay"></div>
-            <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Bitcoin"></div>
+        <div class="widget-box">
+            <iframe 
+                src="https://changenow.io/embeds/exchange-widget/v2/widget.html?FAQ=true&amount=100&amountFiat=100&backgroundColor=FFFFFF&darkMode=false&from=eur&fromFiat=eur&horizontal=false&isFiat=true&lang=fr-FR&link_id=8c77efcb70ab45&locales=true&logo=true&primaryColor=00C26F&to=btc&toFiat=btc&toTheMoon=true">
+            </iframe>
         </div>
+
+        <div class="scroller">
+            <div class="scroller-inner">
+                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"></div>
+                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"></div>
+                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple"></div>
+                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg" alt="GPay"></div>
+                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"></div>
+                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"></div>
+                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple"></div>
+                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg" alt="GPay"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>🔒 Transaction Sécurisée • Support Global 24/7</p>
+            <p>© 2026 Go Exchanger - Partenaire ChangeNOW</p>
+        </footer>
     </div>
 
-    <footer>
-        <p>🔒 Sécurité SSL 256-bits • Support 24/7</p>
-        <p>© 2026 Go Exchanger - Infrastructure by ChangeNOW</p>
-    </footer>
-</div>
-
-<script>
-    // Étoiles subtiles
-    const container = document.getElementById('star-field');
-    for (let i = 0; i < 50; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.width = Math.random() * 2 + 'px';
-        star.style.height = star.style.width;
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.setProperty('--d', (Math.random() * 4 + 2) + 's');
-        container.appendChild(star);
-    }
-</script>
-
+    <script>
+        // Génération des étoiles
+        const field = document.getElementById('star-field');
+        for (let i = 0; i < 60; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            const size = Math.random() * 2 + 1;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.setProperty('--d', (Math.random() * 3 + 2) + 's');
+            field.appendChild(star);
+        }
+    </script>
 </body>
-</html>
+            </html>
+    
