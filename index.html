@@ -1,2 +1,174 @@
-<iframe id='iframe-widget' src='https://changenow.io/embeds/exchange-widget/v2/widget.html?FAQ=true&amount=0.1&amountFiat=1500&backgroundColor=FFFFFF&darkMode=false&from=btc&fromFiat=eur&horizontal=false&isFiat&lang=en-US&link_id=8c77efcb70ab45&locales=true&logo=true&primaryColor=00C26F&to=eth&toFiat=eth&toTheMoon=true' style="height: 356px; width: 100%; border: none"></iframe>
-    <script defer type='text/javascript' src='https://changenow.io/embeds/exchange-widget/v2/stepper-connector.js'></script>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Go Exchanger | Global</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #050b18;
+            --primary: #00d084;
+            --text-dim: #a0aec0;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* --- Fond Étoilé --- */
+        #star-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #0f172a 0%, #050b18 100%);
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: twinkle var(--d) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+        }
+
+        /* --- Structure --- */
+        .container {
+            max-width: 480px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .logo-title {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d084 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .widget-box {
+            background: #161b2c;
+            border-radius: 24px;
+            padding: 5px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 620px;
+            border: none;
+            border-radius: 20px;
+        }
+
+        /* --- Logos Défilants (Pro & Individuels) --- */
+        .scroller {
+            width: 100%;
+            overflow: hidden;
+            margin-top: 20px;
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+
+        .scroller-inner {
+            display: flex;
+            gap: 40px;
+            width: max-content;
+            animation: scroll 15s linear infinite;
+        }
+
+        .logo-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px; /* Taille pro réduite */
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); /* Effet 3D léger */
+            transition: transform 0.3s;
+        }
+
+        .logo-card img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        @keyframes scroll {
+            to { transform: translateX(calc(-50% - 20px)); }
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 11px;
+            color: var(--text-dim);
+            padding-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="star-field"></div>
+
+    <div class="container">
+        <h1 class="logo-title">Go Exchanger</h1>
+
+        <div class="widget-box">
+            <iframe 
+                src="https://changenow.io/embeds/exchange-widget/v2/widget.html?FAQ=true&amount=100&amountFiat=100&backgroundColor=FFFFFF&darkMode=false&from=eur&fromFiat=eur&horizontal=false&isFiat=true&lang=fr-FR&link_id=8c77efcb70ab45&locales=true&logo=true&primaryColor=00C26F&to=btc&toFiat=btc&toTheMoon=true">
+            </iframe>
+        </div>
+
+        <div class="scroller">
+            <div class="scroller-inner">
+                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"></div>
+                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"></div>
+                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple"></div>
+                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg" alt="GPay"></div>
+                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"></div>
+                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"></div>
+                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple"></div>
+                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg" alt="GPay"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>🔒 Transaction Sécurisée • Support Global 24/7</p>
+            <p>© 2026 Go Exchanger - Partenaire ChangeNOW</p>
+        </footer>
+    </div>
+
+    <script>
+        // Génération des étoiles
+        const field = document.getElementById('star-field');
+        for (let i = 0; i < 60; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            const size = Math.random() * 2 + 1;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.setProperty('--d', (Math.random() * 3 + 2) + 's');
+            field.appendChild(star);
+        }
+    </script>
+</body>
+                                           </html>
+
