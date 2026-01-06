@@ -2,173 +2,143 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Go Exchanger | Global</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Exchanger | Neon Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #050b18;
-            --primary: #00d084;
-            --text-dim: #a0aec0;
+            --neon-green: #00ff88;
+            --deep-blue: #050b18;
+            --neon-glow: 0 0 15px rgba(0, 255, 136, 0.6), 0 0 30px rgba(0, 255, 136, 0.3);
         }
 
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            min-height: 100%;
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-dark);
+            margin: 0; padding: 0;
+            background: var(--deep-blue);
             color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
         }
 
-        /* --- Fond Étoilé --- */
-        #star-field {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at center, #0f172a 0%, #050b18 100%);
+        /* --- BACKGROUND ÉTOILÉ --- */
+        #stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.4; animation: blink var(--d) infinite; }
+        @keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.9; } }
+
+        .container { max-width: 460px; margin: 0 auto; padding: 40px 15px; text-align: center; }
+
+        /* --- TITRE NÉON --- */
+        .neon-title {
+            font-size: 36px; font-weight: 800;
+            color: #fff;
+            text-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+            margin-bottom: 5px;
+        }
+        .accent-text {
+            color: var(--neon-green);
+            font-size: 14px; letter-spacing: 2px;
+            text-transform: uppercase; margin-bottom: 30px;
+            font-weight: 700;
         }
 
-        .star {
-            position: absolute;
+        /* --- WIDGET PRO (NETTOYÉ) --- */
+        .widget-neon-box {
             background: white;
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: twinkle var(--d) infinite ease-in-out;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.2; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.2); }
-        }
-
-        /* --- Structure --- */
-        .container {
-            max-width: 480px;
-            margin: 20px auto;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .logo-title {
-            font-size: 32px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #00d084 0%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-        }
-
-        .widget-box {
-            background: #161b2c;
-            border-radius: 24px;
-            padding: 5px;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin-bottom: 30px;
-        }
-
-        iframe {
-            width: 100%;
-            height: 620px;
-            border: none;
-            border-radius: 20px;
-        }
-
-        /* --- Logos Défilants (Pro & Individuels) --- */
-        .scroller {
-            width: 100%;
+            border-radius: 28px;
             overflow: hidden;
-            margin-top: 20px;
-            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            height: 485px; /* Coupe le bas blanc et les logos Visa internes */
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.8), 0 0 5px var(--neon-green);
+            margin-bottom: 45px;
+            border: 2px solid rgba(0, 255, 136, 0.2);
         }
 
-        .scroller-inner {
-            display: flex;
-            gap: 40px;
-            width: max-content;
-            animation: scroll 15s linear infinite;
+        iframe { width: 100%; height: 620px; border: none; }
+
+        /* --- BARRE VERTE NÉON (TES CERCLES ROUGES) --- */
+        .neon-bar {
+            width: 60px; height: 4px;
+            background: var(--neon-green);
+            border-radius: 10px;
+            margin: 0 auto 35px auto;
+            box-shadow: var(--neon-glow);
+            animation: pulse 2s infinite;
         }
 
-        .logo-card {
-            display: flex;
+        @keyframes pulse {
+            0%, 100% { transform: scaleX(1); opacity: 1; }
+            50% { transform: scaleX(1.2); opacity: 0.7; }
+        }
+
+        /* --- LOGOS DÉFILANTS --- */
+        .scroller {
+            width: 100%; overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+        }
+        .track {
+            display: flex; gap: 50px; width: max-content;
+            animation: scroll 18s linear infinite;
             align-items: center;
-            justify-content: center;
-            width: 60px; /* Taille pro réduite */
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); /* Effet 3D léger */
-            transition: transform 0.3s;
         }
+        .logo { 
+            height: 28px; 
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.2)); 
+            transition: 0.3s;
+        }
+        .logo:hover { transform: scale(1.1); filter: drop-shadow(0 0 8px var(--neon-green)); }
 
-        .logo-card img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-        }
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        @keyframes scroll {
-            to { transform: translateX(calc(-50% - 20px)); }
-        }
-
-        footer {
-            margin-top: 40px;
-            font-size: 11px;
-            color: var(--text-dim);
-            padding-bottom: 30px;
-        }
+        footer { margin-top: 50px; color: #475569; font-size: 11px; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
-    <div id="star-field"></div>
+<div id="stars"></div>
 
-    <div class="container">
-        <h1 class="logo-title">Go Exchanger</h1>
+<div class="container">
+    <h1 class="neon-title">GO EXCHANGER</h1>
+    <div class="accent-text">Premium Crypto Swap</div>
 
-        <div class="widget-box">
-            <iframe 
-                src="https://changenow.io/embeds/exchange-widget/v2/widget.html?FAQ=true&amount=100&amountFiat=100&backgroundColor=FFFFFF&darkMode=false&from=eur&fromFiat=eur&horizontal=false&isFiat=true&lang=fr-FR&link_id=8c77efcb70ab45&locales=true&logo=true&primaryColor=00C26F&to=btc&toFiat=btc&toTheMoon=true">
-            </iframe>
-        </div>
-
-        <div class="scroller">
-            <div class="scroller-inner">
-                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"></div>
-                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"></div>
-                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple"></div>
-                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg" alt="GPay"></div>
-                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"></div>
-                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"></div>
-                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple"></div>
-                <div class="logo-card"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg" alt="GPay"></div>
-            </div>
-        </div>
-
-        <footer>
-            <p>🔒 Transaction Sécurisée • Support Global 24/7</p>
-            <p>© 2026 Go Exchanger - Partenaire ChangeNOW</p>
-        </footer>
+    <div class="widget-neon-box">
+        <iframe src="https://changenow.io/embeds/exchange-widget/v2/widget.html?FAQ=false&amount=100&backgroundColor=FFFFFF&darkMode=false&from=eur&horizontal=false&isFiat=true&lang=fr-FR&link_id=8c77efcb70ab45&logo=false&primaryColor=00FF88&to=btc"></iframe>
     </div>
 
-    <script>
-        // Génération des étoiles
-        const field = document.getElementById('star-field');
-        for (let i = 0; i < 60; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            const size = Math.random() * 2 + 1;
-            star.style.width = size + 'px';
-            star.style.height = size + 'px';
-            star.style.setProperty('--d', (Math.random() * 3 + 2) + 's');
-            field.appendChild(star);
-        }
-    </script>
+    <div class="bottom-ui">
+        <div class="neon-bar"></div>
+
+        <div class="scroller">
+            <div class="track">
+                <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg">
+                <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg">
+                <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg">
+                <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg">
+                <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg">
+                <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg">
+                <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg">
+                <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 • SECURED BY CHANGENOW PROTOCOL</p>
+    </footer>
+</div>
+
+<script>
+    const container = document.getElementById('stars');
+    for (let i = 0; i < 70; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        const size = Math.random() * 2 + 1 + 'px';
+        star.style.width = size; star.style.height = size;
+        star.style.setProperty('--d', (Math.random() * 4 + 2) + 's');
+        container.appendChild(star);
+    }
+</script>
+
 </body>
-                                           </html>
+    </html>
 
